@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "md5": "^2.0.0",
     "underscore": "^1.8.3"
   }
 }
