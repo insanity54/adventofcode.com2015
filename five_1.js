@@ -15,14 +15,19 @@ function chomp(raw_text) {
 var containsThreeVowels = function containsThreeVowels(txt) {
   var vowelCount = 0;
   var vowelLog = '';
-  _.find(txt, function(value, key, list) {
+  
+  // iterate thru letters in this line
+  // return true if line contains 3 or more vowels
+  return _.find(txt, function(value, key, list) {
     if (value.match(vowelsRegex)) {
       vowelCount += 1;
       vowelLog += value;
       //console.log('voewl detection: ', value, ' count ', vowelCount);
-      if (vowelCount == 3) {
-        console.log('vowel log ', vowelLog);
+      if (vowelCount >= 3) {
+        //console.log('vowel log ', vowelLog);
+        return true;
       }
+      return false;
     }
     
   });
@@ -40,6 +45,8 @@ var containsNoBlacklist = function containsNoBlacklist(txt) {
 var isNice = function isNice(txt) {
   console.log(txt);
   if (containsThreeVowels(txt)) {
+    console.log('line ', txt, ' contains three vowels');
+    
     if (containsDoubleLetter(txt)) {
       if (containsNoBlacklist(txt)) {
         return true;
