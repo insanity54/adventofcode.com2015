@@ -5,7 +5,7 @@ var _ = require('underscore');
 var text = chomp(fs.readFileSync(path.join(__dirname, '5.md'), {encoding: 'utf8'}));
 var lines = text.split('\n');
 
-var vowels = 'aeiou';
+var vowelsRegex = '[aeiou]';
 
 // greets http://3dmdesign.com/development/chomp-for-javascript
 function chomp(raw_text) {
@@ -13,10 +13,19 @@ function chomp(raw_text) {
 }
 
 var containsThreeVowels = function containsThreeVowels(txt) {
-  var 
-  _.forEach(txt, function(value, key, list) {
+  var vowelCount = 0;
+  var vowelLog = '';
+  _.find(txt, function(value, key, list) {
+    if (value.match(vowelsRegex)) {
+      vowelCount += 1;
+      vowelLog += value;
+      //console.log('voewl detection: ', value, ' count ', vowelCount);
+      if (vowelCount == 3) {
+        console.log('vowel log ', vowelLog);
+      }
+    }
     
-  }
+  });
 }
 
 var containsDoubleLetter = function containsDoubleLetter(txt) {
